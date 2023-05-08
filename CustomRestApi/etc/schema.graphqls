@@ -1,0 +1,35 @@
+# for get data 
+    type Query {
+        student(
+                stuEmail: String 
+            ): 
+        Teststudent @resolver(class:"Bluethinkinc\\CustomRestApi\\Model\\Resolver\\Student")
+    }
+
+    type Teststudent {
+        student_id: Int
+        stu_name: String
+        stu_email: String
+        message: String
+    }
+
+#for insert data
+
+    type Mutation {
+        studentFormSubmit(input: StudentInput!): StudentOutput @resolver(class: "\\Bluethinkinc\\CustomRestApi\\Model\\Resolver\\StudentSave") @doc(description:"Student form")
+    }
+
+    input StudentInput {
+        stu_name: String @doc(description: "The customer's full name")
+        stu_email: String @doc(description: "The customer's email address")
+        message: String @doc(description: "The message")
+
+    }
+
+    type StudentOutput {
+        student_id: String @doc(description: "The customer's ID")
+        stu_name: String @doc(description: "The customer's full name")
+        stu_email: String @doc(description: "The customer's email address")
+        message: String @doc(description: "The message")
+    }
+
